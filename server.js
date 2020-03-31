@@ -1,0 +1,11 @@
+const io = require('socket.io')(3000)
+
+io.on('connection', socket => {
+    // console.log("tny")
+    socket.emit('chat-message', 'Hello World')
+    socket.on('send-chat-message', message => {
+        // console.log(message)
+        socket.broadcast.emit('chat-message', message)
+
+    })
+})
